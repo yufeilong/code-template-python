@@ -1,15 +1,13 @@
 import json, os
 from xml.etree import ElementTree as ET
 
-
-
-
 def load_config():
+    config_params = {}
     config_file = file("config.json")
-    config_params = json.load(config_file)
-    source_project = config_params["source_project"]
-
-    return source_project
+    config_json = json.load(config_file)
+    source_project = config_json["source_project"]
+    config_params['source_project'] = source_project
+    return config_params
 
 def copy_project(source_project,  target_dir):
  for file in os.listdir(source_project):
@@ -29,4 +27,4 @@ def modify_project(project_dir, project_file):
 
     name_node = source_root.find('name')
     if name_node is not None and len(name_node) > 0:
-        name_node.
+        name_node.set("name", "libs_")
