@@ -6,7 +6,9 @@ def load_config():
     config_file = file("config.json")
     config_json = json.load(config_file)
     source_project = config_json["source_project"]
+    target_folder = config_json["target_folder"]
     config_params['source_project'] = source_project
+    config_params['target_folder'] = target_folder
     return config_params
 
 def copy_project(source_project,  target_dir):
@@ -26,5 +28,10 @@ def modify_project(project_dir, project_file):
     source_root = source_tree.getroot()
 
     name_node = source_root.find('name')
-    if name_node is not None and len(name_node) > 0:
+    if name_node is not None and len(name_node)>0:
         name_node.set("name", "libs_")
+
+
+if __name__ == '__main__':
+   config_list = load_config()
+   copy_project(config_list["source_project"], config_list["target_folder"])
