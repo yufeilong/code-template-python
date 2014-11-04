@@ -52,6 +52,14 @@ def modify_res(project_dir, res_file):
 
 #main
 if __name__ == '__main__':
+    if len(sys.argv[1]) == 0:
+        print "please input -h for help"
+        sys.exit(0) 
+    elif sys.argv[1] == "-h":
+        print "Usage:"
+        print " python newLibProject [project_name]"
+        sys.exit(0)
+
     # pre params
     project_name = "libs_" + sys.argv[1]
     config_list = load_config()
